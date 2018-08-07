@@ -1,9 +1,8 @@
 import React from 'react';
 
 class Moves extends React.Component {
-    render () {
-
-        const moves = this.props.history.map((step, move) => {
+    listMoves () {
+        return this.props.history.map((step, move) => {
             const desc = move ?
                 `Go to move #${move}` :
                 'Go to game start'
@@ -14,11 +13,14 @@ class Moves extends React.Component {
                 </li>
             )
         })
+    }
 
-
-        return <ol>
-            {moves}
-        </ol>
+    render () {
+        return (
+            <ol>
+                {this.listMoves()}
+            </ol>
+        )
     }
 }
 
