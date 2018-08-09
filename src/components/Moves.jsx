@@ -16,7 +16,7 @@ class Moves extends React.Component {
     listMoves () {
         return this.props.history.map((step, move) => {
             const desc = this.description(move)
-            let position = move ? this.getPosition(step.position) : ''
+            const position = move ? this.getPosition(step.position) : ''
 
             return (
                 <li key={move}>
