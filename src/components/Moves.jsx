@@ -1,4 +1,5 @@
 import React from 'react';
+import calculatePosition from '../functions/calculatePosition';
 
 class Moves extends React.Component {
     description (move) {
@@ -7,14 +8,15 @@ class Moves extends React.Component {
             'Go to game start'
     }
 
+    getPosition (position) {
+        position = calculatePosition(position)
+        return `x: ${position.x + 1} y:${position.y + 1}`
+    }
+
     listMoves () {
         return this.props.history.map((step, move) => {
             const desc = this.description(move)
-            let position
-            if (move) {
-                position = `x: ${step.position.x + 1} y: ${step.position.y + 1}`
-            }
-
+            let position = move ? this.getPosition(step.position) : ''
 
             return (
                 <li key={move}>
