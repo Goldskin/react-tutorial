@@ -4,7 +4,7 @@ import className from 'classnames';
 function Square (props) {
     var classes = className(
         'square',
-        { 'bold': props.highlight }
+        { 'highlight': props.highlight }
     )
 
     return (

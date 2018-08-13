@@ -67,6 +67,7 @@ class Game extends React.Component {
                     <div>{status}</div>
                     <Moves
                         history={history}
+                        current={this.state.stepNumber}
                         onClick={(i) => this.jumpTo(i)} />
                 </div>
             </div>

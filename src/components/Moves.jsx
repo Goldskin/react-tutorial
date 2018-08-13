@@ -1,5 +1,6 @@
 import React from 'react';
 import calculatePosition from '../functions/calculatePosition';
+import Move from './Move';
 
 class Moves extends React.Component {
     description (move) {
@@ -15,13 +16,16 @@ class Moves extends React.Component {
 
     listMoves () {
         return this.props.history.map((step, move) => {
-            const desc = this.description(move)
+            const description = this.description(move)
             const position = move ? this.getPosition(step.position) : ''
 
             return (
-                <li key={move}>
-                    <button onClick={() => this.props.onClick(move)}>{desc}</button> {position}
-                </li>
+                <Move
+                    key={move}
+                    description={description}
+                    position={position}
+                    highlight={move === this.props.current}
+                    onClick={() => this.props.onClick(move)}></Move>
             )
         })
     }
