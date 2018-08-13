@@ -4,8 +4,9 @@ import className from 'classnames';
 function Square (props) {
     var classes = className(
         'square',
-        { 'bold': props.current }
+        { 'bold': props.highlight }
     )
+
     return (
         <button className={classes} onClick={props.onClick}>
             {props.value}

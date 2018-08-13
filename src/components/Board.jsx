@@ -3,11 +3,12 @@ import Square from './Square';
 
 class Board extends React.Component {
     renderSquare (i)  {
+        console.log(this.props.highlight.indexOf(i))
         return (
             <Square
                 key={i}
                 value={this.props.squares[i]}
-                current={i === this.props.current}
+                highlight={this.props.highlight.indexOf(i) >= 0}
                 onClick={() => this.props.onClick(i)}
             />
         )

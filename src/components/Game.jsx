@@ -21,7 +21,7 @@ class Game extends React.Component {
         const current = history[history.length - 1];
         const squares = current.squares.slice();
 
-        if (calculateWinner(squares) || squares[i]) {
+        if (calculateWinner(squares).player || squares[i]) {
             return;
         }
 
@@ -49,8 +49,8 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         let status;
-        if (winner) {
-            status = 'Winner: ' + winner;
+        if (winner.player) {
+            status = 'Winner: ' + winner.player;
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
@@ -61,7 +61,7 @@ class Game extends React.Component {
                     <Board
                         squares={current.squares}
                         onClick={(i) => this.addMove(i)}
-                        current={current.position} />
+                        highlight={winner.squares.concat(current.position)} />
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
