@@ -3,7 +3,6 @@ import Square from './Square';
 
 class Board extends React.Component {
     renderSquare (i)  {
-        console.log(this.props.highlight.indexOf(i))
         return (
             <Square
                 key={i}
@@ -18,14 +17,16 @@ class Board extends React.Component {
         const rows = []
         let cellNumber = 0
         let cells
+
         for (let rowsIndex = 0; rowsIndex < 3; rowsIndex++) {
-            cells =[]
+            cells = []
             for (let cellIndex = 0; cellIndex < 3; cellIndex++) {
                 cells.push(this.renderSquare(cellNumber))
                 cellNumber++
             }
             rows.push(<div key={rowsIndex} className="board-row">{cells}</div>)
         }
+
         return rows
     }
 

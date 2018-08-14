@@ -12,7 +12,8 @@ class Game extends React.Component {
                 position: null
             }],
             stepNumber: 0,
-            xIsNext: true
+            xIsNext: true,
+            order: 'desc'
         }
     }
 
@@ -32,7 +33,8 @@ class Game extends React.Component {
                 position: i
             }]),
             stepNumber: history.length,
-            xIsNext: !this.state.xIsNext
+            xIsNext: !this.state.xIsNext,
+            order: this.state.order
         });
     }
 
@@ -40,6 +42,12 @@ class Game extends React.Component {
         this.setState({
             stepNumber: step,
             xIsNext: (step % 2) === 0
+        })
+    }
+
+    changeOrder () {
+        this.setState({
+            order: this.state.order === 'asc' ? 'desc' : 'asc'
         })
     }
 
@@ -51,6 +59,8 @@ class Game extends React.Component {
         let status;
         if (winner.player) {
             status = 'Winner: ' + winner.player;
+        } else if (this.state.stepNumber >= 9) {
+            status = 'Draw';
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
@@ -65,7 +75,9 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
+                    <button onClick={() => this.changeOrder()}>{this.state.order}</button>
                     <Moves
+                        order={this.state.order}
                         history={history}
                         current={this.state.stepNumber}
                         onClick={(i) => this.jumpTo(i)} />

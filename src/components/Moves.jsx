@@ -31,9 +31,13 @@ class Moves extends React.Component {
     }
 
     render () {
+        const listMoves = this.props.order === 'asc' ?
+            this.listMoves() :
+            this.listMoves().reverse()
+
         return (
             <ol>
-                {this.listMoves()}
+                {listMoves}
             </ol>
         )
     }
